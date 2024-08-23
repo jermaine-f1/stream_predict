@@ -140,7 +140,7 @@ def main():
 
             # Forecasting
             forecast_dates = [stock_data.index[-1] + timedelta(days=i) for i in range(1, 31)]
-            # forecast = pd.DataFrame(index=forecast_dates, columns=['Forecast'])
+            forecast = pd.DataFrame(index=forecast_dates, columns=['Forecast'])
 
             # # Use the last 100 days of data for forecasting
             # last_100_days = stock_data['Close'].tail(100)
