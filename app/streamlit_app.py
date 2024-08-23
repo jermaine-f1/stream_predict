@@ -127,7 +127,7 @@ def main():
             fig3 = go.Figure()
             fig3.add_trace(go.Scatter(x=stock_data.index, y=stock_data['Close'], mode='lines', name='Original Price'))
             fig3.add_trace(go.Scatter(x=stock_data.index[100:], y=y_pred.flatten(), mode='lines', name='Predicted Price'))
-            # st.plotly_chart(fig3)
+            st.plotly_chart(fig3)
 
             # Evaluation metrics
             y_true = stock_data['Close'].values[100:]
