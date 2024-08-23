@@ -127,7 +127,7 @@ def main():
             fig3 = go.Figure()
             fig3.add_trace(go.Scatter(x=stock_data.index, y=stock_data['Close'], mode='lines', name='Original Price'))
             fig3.add_trace(go.Scatter(x=stock_data.index[100:], y=y_pred.flatten(), mode='lines', name='Predicted Price'))
-            st.plotly_chart(fig3)
+            # st.plotly_chart(fig3)
 
             # Evaluation metrics
             y_true = stock_data['Close'].values[100:]
@@ -157,12 +157,16 @@ def main():
                 y_forecast = model.predict(x_forecast)
                 # Reshape y_forecast to 2D array before applying inverse transform
                 y_forecast = y_forecast.reshape(1, -1)
-                
+
                 forecast.iloc[i] = scaler.inverse_transform(y_forecast)[0][0]
                 last_100_days_scaled = np.append(last_100_days_scaled, y_forecast)
 
             st.subheader('30-Day Forecast')
             st.write(forecast)
+
+            # Add the forecast data
+            fig3.add_trace(go.Scatter(x=forecast.index, y=forecast['Forecast'], mode='lines', name='Forecast', line=dict(dash='dash')))
+            st.plotly_chart(fig3)
 
         except Exception as e:
             st.error(f"Error: {e}")
