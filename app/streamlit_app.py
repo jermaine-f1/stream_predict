@@ -154,7 +154,7 @@ def main():
                     elif len(expected_input_shape) == 4:
                         x_forecast = np.expand_dims(x_forecast, axis=0)
                         x_forecast = np.expand_dims(x_forecast, axis=-1)
-                print(f"x_forecast shape: {x_forecast.shape}")
+                st.write(f"x_forecast shape: {x_forecast.shape}")
                 y_forecast = model.predict(x_forecast)
                 # Reshape y_forecast to 2D array before applying inverse transform
                 y_forecast = y_forecast.reshape(1, -1)
