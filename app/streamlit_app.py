@@ -155,6 +155,7 @@ def main():
                         x_forecast = np.expand_dims(x_forecast, axis=0)
                         x_forecast = np.expand_dims(x_forecast, axis=-1)
                 st.write(f"x_forecast shape: {x_forecast.shape}")
+                st.write(f"model input shape:{model.input_shape}")
                 y_forecast = model.predict(x_forecast)
                 # Reshape y_forecast to 2D array before applying inverse transform
                 y_forecast = y_forecast.reshape(1, -1)
