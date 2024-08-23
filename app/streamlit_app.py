@@ -92,8 +92,8 @@ def main():
             if selected_model == "Neural Network":
                 model_path = os.path.join(base_dir, 'models', 'neural_network', f'{stock_symbol}_nn.keras')
                 model = load_model(model_path)
-                expected_input_shape = model.input_shape
-                st.write(f"Model input shape: {expected_input_shape}")
+                # expected_input_shape = model.input_shape
+                # st.write(f"Model input shape: {expected_input_shape}")
             elif selected_model == "Random Forest":
                 model_path = os.path.join(base_dir, 'models', 'random_forest', f'{stock_symbol}_rf.pkl')
                 model = joblib.load(model_path)
