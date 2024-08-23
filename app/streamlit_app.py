@@ -146,20 +146,20 @@ def main():
             last_100_days = stock_data['Close'].tail(100)
             last_100_days_scaled = scaler.transform(np.array(last_100_days).reshape(-1, 1))
 
-            # for i in range(30):
-            #     x_forecast = last_100_days_scaled[-100:].reshape(1, -1)
-            #     if selected_model == "Neural Network":
-            #         if len(expected_input_shape) == 3:
-            #             x_forecast = np.expand_dims(x_forecast, axis=-1)
-            #         elif len(expected_input_shape) == 4:
-            #             x_forecast = np.expand_dims(x_forecast, axis=0)
-            #             x_forecast = np.expand_dims(x_forecast, axis=-1)
-            #     y_forecast = model.predict(x_forecast)
-            #     forecast.iloc[i] = scaler.inverse_transform(y_forecast)[0][0]
-            #     last_100_days_scaled = np.append(last_100_days_scaled, y_forecast)
+            for i in range(30):
+                x_forecast = last_100_days_scaled[-100:].reshape(1, -1)
+                if selected_model == "Neural Network":
+                    if len(expected_input_shape) == 3:
+                        x_forecast = np.expand_dims(x_forecast, axis=-1)
+                    elif len(expected_input_shape) == 4:
+                        x_forecast = np.expand_dims(x_forecast, axis=0)
+                        x_forecast = np.expand_dims(x_forecast, axis=-1)
+                y_forecast = model.predict(x_forecast)
+                forecast.iloc[i] = scaler.inverse_transform(y_forecast)[0][0]
+                last_100_days_scaled = np.append(last_100_days_scaled, y_forecast)
 
-            # st.subheader('30-Day Forecast')
-            # st.write(forecast)
+            st.subheader('30-Day Forecast')
+            st.write(forecast)
 
         except Exception as e:
             st.error(f"Error: {e}")
