@@ -170,7 +170,7 @@ def main():
 
             # Add the forecast data
             fig3.add_trace(go.Scatter(x=forecast.index, y=forecast['Forecast'], mode='lines', name='Forecast', line=dict(dash='dash')))
-            st.write(f"Using {selected_model}")
+            st.subheader(f"Using {selected_model}")
             st.plotly_chart(fig3)
 
         except Exception as e:
