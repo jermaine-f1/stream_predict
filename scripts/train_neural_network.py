@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Dense, Input
 import os
 
 # Directory containing the stock data
@@ -68,7 +68,9 @@ for file in os.listdir(data_dir):
 
         # Train the neural network model
         model = Sequential()
-        model.add(Dense(100, activation='relu', input_shape=(x_train.shape[1],)))
+        # model.add(Dense(100, activation='relu', input_shape=(x_train.shape[1],)))
+        model.add(Input(shape=(x_train.shape[1],)))
+        model.add(Dense(100, activation='relu'))
         model.add(Dense(1))
         model.compile(optimizer='adam', loss='mse')
         model.fit(x_train, y_train, epochs=10, batch_size=32, verbose=0)
