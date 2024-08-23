@@ -9,6 +9,7 @@ from tensorflow.keras.models import load_model
 import plotly.graph_objs as go
 import joblib
 import os
+import keras
 
 # Load the SP500 stock list
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
