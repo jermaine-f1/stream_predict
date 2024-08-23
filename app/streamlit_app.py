@@ -40,7 +40,9 @@ def main():
     end_date = st.sidebar.date_input('Select End Date:', datetime.now())
 
     # Model selection
-    selected_model = st.sidebar.radio("Select Model", ("Neural Network", "Random Forest", "Linear Regression"))
+    selected_model = st.sidebar.radio("Select Model", (
+                                                    #    "Neural Network", 
+                                                       "Random Forest", "Linear Regression"))
 
     # Load stock data
     if stock_symbol:
