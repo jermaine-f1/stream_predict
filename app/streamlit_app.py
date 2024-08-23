@@ -155,6 +155,9 @@ def main():
                         x_forecast = np.expand_dims(x_forecast, axis=0)
                         x_forecast = np.expand_dims(x_forecast, axis=-1)
                 y_forecast = model.predict(x_forecast)
+                # Reshape y_forecast to 2D array before applying inverse transform
+                y_forecast = y_forecast.reshape(1, -1)
+                
                 forecast.iloc[i] = scaler.inverse_transform(y_forecast)[0][0]
                 last_100_days_scaled = np.append(last_100_days_scaled, y_forecast)
 
