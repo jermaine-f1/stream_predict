@@ -69,22 +69,23 @@ def main():
             # st.write("...")  # Inserting an ellipsis for large datasets
 
             # Calculate moving averages
-            stock_data['MA100'] = calculate_moving_average(stock_data['Close'], 100)
+            # stock_data['MA100'] = calculate_moving_average(stock_data['Close'], 100)
+            stock_data['MA50'] = calculate_moving_average(stock_data['Close'], 50)
             stock_data['MA200'] = calculate_moving_average(stock_data['Close'], 200)
 
-            # Plot stock data with moving average
-            st.subheader('Price vs MA100')
-            fig1 = go.Figure()
-            fig1.add_trace(go.Scatter(x=stock_data.index, y=stock_data['Close'], mode='lines', name='Close Price'))
-            fig1.add_trace(go.Scatter(x=stock_data.index, y=stock_data['MA100'], mode='lines', name='MA100'))
-            st.plotly_chart(fig1)
+            # # Plot stock data with moving average
+            # st.subheader('Price vs MA100')
+            # fig1 = go.Figure()
+            # fig1.add_trace(go.Scatter(x=stock_data.index, y=stock_data['Close'], mode='lines', name='Close Price'))
+            # fig1.add_trace(go.Scatter(x=stock_data.index, y=stock_data['MA100'], mode='lines', name='MA100'))
+            # st.plotly_chart(fig1)
 
             # Plot stock data with moving averages
             st.subheader('Price vs MA100 vs MA200')
             fig2 = go.Figure()
             fig2.add_trace(go.Scatter(x=stock_data.index, y=stock_data['Close'], mode='lines', name='Close Price'))
-            fig2.add_trace(go.Scatter(x=stock_data.index, y=stock_data['MA100'], mode='lines', name='MA100'))
-            fig2.add_trace(go.Scatter(x=stock_data.index, y=stock_data['MA200'], mode='lines', name='MA200'))
+            fig2.add_trace(go.Scatter(x=stock_data.index, y=stock_data['MA50'], mode='dots', name='50DMA'))
+            fig2.add_trace(go.Scatter(x=stock_data.index, y=stock_data['MA200'], mode='dots', name='200DMA'))
             st.plotly_chart(fig2)
 
             # # Additional plots for the selected stock
