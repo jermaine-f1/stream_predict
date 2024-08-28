@@ -12,9 +12,10 @@ model_dir = os.path.join(base_dir, 'models', 'linear_regression/')
 os.makedirs(model_dir, exist_ok=True)
 
 # Load the SP500 stock list
-csv_file_path = os.path.join(base_dir, 'sp500_stocks.csv')
-sp500_stocks = pd.read_csv(csv_file_path)
-
+# csv_file_path = os.path.join(base_dir, 'sp500_stocks.csv')
+# sp500_stocks = pd.read_csv(csv_file_path)
+csv_file_path = os.path.join(base_dir, 'etfs.csv')
+etf_tickers = pd.read_csv(csv_file_path)
 
 def train_linear_regression(symbol):
     # Load data
@@ -68,5 +69,6 @@ def train_linear_regression(symbol):
 
 
 # Train and save Linear Regression model for each SP500 stock
-for symbol in sp500_stocks['Symbol']:
+# for symbol in sp500_stocks['Symbol']:
+for symbol in etf_tickers['Symbol']:
     train_linear_regression(symbol)

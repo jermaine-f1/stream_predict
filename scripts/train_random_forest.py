@@ -19,9 +19,17 @@ def create_dataset(data, look_back=100):
         Y.append(data[i + look_back, 0])
     return np.array(X), np.array(Y)
 
+specific_files = ['IAT.csv', 'ITA.csv', 'PRN.csv', 'AIRR.csv']  
+
 # Train and save model for each stock
-for file in os.listdir(data_dir):
-    if file.endswith('.csv'):
+# for file in os.listdir(data_dir):
+#     if file.endswith('.csv'):
+
+# Loop through the specific files and check if they exist in the directory
+for file in specific_files:
+    file_path = os.path.join(data_dir, file)
+    if os.path.isfile(file_path):
+
         symbol = file.split('.')[0]
         print(f"Processing {symbol}...")
 
