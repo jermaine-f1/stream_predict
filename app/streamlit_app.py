@@ -11,6 +11,16 @@ import joblib
 import os
 import keras
 
+
+# set menu items
+st.set_page_config(page_title="DL Price Forecaster", page_icon=":rocket:",
+    layout="wide", initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': "https://www.linkedin.com/in/jermainedasargo/",
+        'Report a bug': "https://www.linkedin.com/in/jermainedasargo/",
+        'About': "# Powered by # [DeLorean](https://deloreanpartners.com/) v.20122023"
+    })
+
 # Load the SP500 stock list
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 csv_file_path = os.path.join(base_dir, 'sp500_stocks.csv')

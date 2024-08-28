@@ -78,3 +78,4 @@ for file in os.listdir(data_dir):
         # Save the trained model
         model.save(f'{model_dir}/{symbol}_nn.keras')
         print(f'Model for {symbol} saved as {symbol}_nn.keras')
+    
