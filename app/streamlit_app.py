@@ -23,8 +23,12 @@ st.set_page_config(page_title="DL Price Forecaster", page_icon=":rocket:",
 
 # Load the SP500 stock list
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-csv_file_path = os.path.join(base_dir, 'sp500_stocks.csv')
-sp500_stocks = pd.read_csv(csv_file_path)
+# csv_file_path = os.path.join(base_dir, 'sp500_stocks.csv')
+# sp500_stocks = pd.read_csv(csv_file_path)
+
+# load etfs
+csv_file_path = os.path.join(base_dir, 'etfs.csv')
+etf_tickers = pd.read_csv(csv_file_path)
 
 # Function to calculate moving averages
 def calculate_moving_average(data, window_size):
@@ -39,11 +43,13 @@ def create_dataset(data, look_back=100):
 
 # Streamlit app
 def main():
-    st.sidebar.title('Stock Price Forecasting App')
-    st.sidebar.markdown('Select an SP500 stock and date range')
+    st.sidebar.title('Price Forecaster')
+    # st.sidebar.markdown('Select an SP500 stock and date range')
+    st.sidebar.markdown('Select an ETF and date range')
 
     # Dropdown for SP500 stocks
-    stock_symbol = st.sidebar.selectbox('Select Stock Ticker Symbol:', sp500_stocks['Symbol'])
+    # stock_symbol = st.sidebar.selectbox('Select Stock Ticker:', sp500_stocks['Symbol'])
+    stock_symbol = st.sidebar.selectbox('Select ETF Ticker:', etf_tickers['Symbol'])
 
     # Date range input
     start_date = st.sidebar.date_input('Select Start Date:', datetime.now() - timedelta(days=365))
@@ -58,9 +64,9 @@ def main():
     if stock_symbol:
         try:
             stock_data = yf.download(stock_symbol, start=start_date, end=end_date)
-            st.subheader(f'Stock Data for {stock_symbol}')
-            st.write(stock_data.head(50))  # Display first 50 rows
-            st.write("...")  # Inserting an ellipsis for large datasets
+            # st.subheader(f'Stock Data for {stock_symbol}')
+            # st.write(stock_data.head(50))  # Display first 50 rows
+            # st.write("...")  # Inserting an ellipsis for large datasets
 
             # Calculate moving averages
             stock_data['MA100'] = calculate_moving_average(stock_data['Close'], 100)
@@ -81,18 +87,18 @@ def main():
             fig2.add_trace(go.Scatter(x=stock_data.index, y=stock_data['MA200'], mode='lines', name='MA200'))
             st.plotly_chart(fig2)
 
-            # Additional plots for the selected stock
-            st.subheader('Additional Plots')
-            # Candlestick chart
-            candlestick = go.Candlestick(x=stock_data.index,
-                                         open=stock_data['Open'],
-                                         high=stock_data['High'],
-                                         low=stock_data['Low'],
-                                         close=stock_data['Close'],
-                                         name='Candlestick')
-            candlestick_layout = go.Layout(title='Candlestick Chart')
-            candlestick_fig = go.Figure(data=candlestick, layout=candlestick_layout)
-            st.plotly_chart(candlestick_fig)
+            # # Additional plots for the selected stock
+            # st.subheader('Additional Plots')
+            # # Candlestick chart
+            # candlestick = go.Candlestick(x=stock_data.index,
+            #                              open=stock_data['Open'],
+            #                              high=stock_data['High'],
+            #                              low=stock_data['Low'],
+            #                              close=stock_data['Close'],
+            #                              name='Candlestick')
+            # candlestick_layout = go.Layout(title='Candlestick Chart')
+            # candlestick_fig = go.Figure(data=candlestick, layout=candlestick_layout)
+            # st.plotly_chart(candlestick_fig)
 
             # Volume plot
             volume_fig = go.Figure()
