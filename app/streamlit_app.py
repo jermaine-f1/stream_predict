@@ -81,7 +81,7 @@ def main():
             # st.plotly_chart(fig1)
 
             # Plot stock data with moving averages
-            st.subheader('Price vs MA100 vs MA200')
+            st.subheader('Price')
             fig2 = go.Figure()
             fig2.add_trace(go.Scatter(x=stock_data.index, y=stock_data['Close'], mode='lines', name='Close Price'))
             fig2.add_trace(go.Scatter(x=stock_data.index, y=stock_data['MA50'], mode='lines', line=dict(dash='dot', color='orange'), name='50DMA'))
