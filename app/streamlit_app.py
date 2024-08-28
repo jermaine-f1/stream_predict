@@ -84,7 +84,7 @@ def main():
             st.subheader('Price vs MA100 vs MA200')
             fig2 = go.Figure()
             fig2.add_trace(go.Scatter(x=stock_data.index, y=stock_data['Close'], mode='lines', name='Close Price'))
-            fig2.add_trace(go.Scatter(x=stock_data.index, y=stock_data['MA50'], mode='lines+markers', line=dict(dash='dot',), name='50DMA'))
+            fig2.add_trace(go.Scatter(x=stock_data.index, y=stock_data['MA50'], mode='markers', line=dict(dash='dot',), name='50DMA'))
             fig2.add_trace(go.Scatter(x=stock_data.index, y=stock_data['MA200'], mode='lines', name='200DMA'))
             st.plotly_chart(fig2)
 
